@@ -29,4 +29,4 @@ Install the following libraries to your Arduino IDE
 
 ## Compile and Run
 
-With your Arduino IDE, compile and run [the sketch](./m5stack-env-harvest-sample.ino)
+With your Arduino IDE, compile and run [the sketch](./m5stack-env3-harvest-sample.ino)
