@@ -15,7 +15,7 @@ Enable Soracom Harvest feature by following the [doument abount the Harvest](htt
 
 ### Setup ArduinoIDE
 
-Setup Arduino to use M5Stack by following the document [setup-for-m5stack-with-arduino-ide](https://soracom.github.io/iot-recipes/setup-for-m5stack-with-arduino-ide)
+Setup Arduino to use M5Stack by following the document [setup-for-m5stack-with-arduino-ide](https://soracom.github.io/iot-recipes/setup-for-m5stack-with-arduino-ide). Please make sure your ArduinoIDE targets `M5Stack-Core-ESP32` as the board configuration.
 
 ### Setup ArduinoIDE
 
