@@ -1,22 +1,24 @@
 
 #include <M5Stack.h>
 
-//通信ライブラリのインポート
+//通信ライブラリ
 #define TINY_GSM_MODEM_UBLOX
 #include <TinyGsmClient.h>
 #include <HTTPClient.h>
 #include <ArduinoHttpClient.h>
+
+//Jsonライブラリ
 #include <ArduinoJson.h>
 
 TinyGsm modem(Serial2); /* 3Gボードモデム */
 TinyGsmClient ctx(modem);
 
-char serverAddress[] = "unified.soracom.io";
-int port = 80;
+const char* serverAddress = "unified.soracom.io";
+const int port = 80;
 HttpClient client = HttpClient(ctx, serverAddress, port);
 
 
-//センサーライブラリのインポート
+//センサーライブラリ
 #include "UNIT_ENV.h"
 
 SHT3X sht30;

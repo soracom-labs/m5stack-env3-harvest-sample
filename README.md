@@ -1,6 +1,6 @@
 # M5Stack Env3 Harvest
 
-This sample shows how to send humidity and temperature, pressure from Env3 to harvest.
+This sample shows how to send humidity and temperature, pressure from Env III to harvest.
 
 - [ENV III Unit with Temperature Humidity Air Pressure Sensor (SHT30+QMP6988)](https://shop.m5stack.com/products/env-iii-unit-with-temperature-humidity-air-pressure-sensor-sht30-qmp6988)
 - [M5Stack Basic](https://m5stack.com/)
