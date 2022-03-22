@@ -9,15 +9,15 @@ This sample shows how to send humidity and temperature, pressure from Env III to
 
 ## Prerequisite
 
-### Enable Soracom harvest
+### Enable Soracom Harvest
 
-Enable Soracom Harvest feature by following the [doument abount the Harvest](https://users.soracom.io/ja-jp/docs/harvest/send-data/)
+Enable Soracom Harvest feature by following the [doument about the Harvest](https://users.soracom.io/ja-jp/docs/harvest/send-data/)
 
 ### Setup ArduinoIDE
 
 Setup Arduino to use M5Stack by following the document [setup-for-m5stack-with-arduino-ide](https://soracom.github.io/iot-recipes/setup-for-m5stack-with-arduino-ide). Please make sure your ArduinoIDE targets `M5Stack-Core-ESP32` as the board configuration.
 
-### Setup ArduinoIDE
+### Install Dependencies
 
 Install the following libraries to your Arduino IDE
 
@@ -29,4 +29,4 @@ Install the following libraries to your Arduino IDE
 
 ## Compile and Run
 
-With your Arduino IDE, compile [sketch_harvest_humidtemp.ino](./sketch_harvest_humidtemp.ino)
+With your Arduino IDE, compile [m5stack-env3-harvest-sample.ino](./m5stack-env3-harvest-sample.ino)
