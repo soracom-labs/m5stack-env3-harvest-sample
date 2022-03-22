@@ -22,7 +22,7 @@ HttpClient client = HttpClient(ctx, serverAddress, port);
 SHT3X sht30;
 QMP6988 qmp6988;
 
-float tmp = 0.0;
+float temp = 0.0;
 float hum = 0.0;
 float pressure = 0.0;
 
@@ -74,10 +74,10 @@ void loop() {
   //センサーデータの取得
   pressure = qmp6988.calcPressure()/100;
   if(sht30.get()==0){
-    tmp = sht30.cTemp;
+    temp = sht30.cTemp;
     hum = sht30.humidity;
   }else{
-    tmp=0,hum=0;
+    temp=0,hum=0;
   }
 
   //ディスプレイのクリア（塗りつぶし）
@@ -85,10 +85,10 @@ void loop() {
 
   //センサーデータの表示
   M5.lcd.setCursor(0,20);
-  M5.Lcd.printf("Temp: %2.1f  \r\nHumi: %2.0f%%  \r\nPressure:%2.0fhPa\r\n", tmp, hum, pressure);
+  M5.Lcd.printf("Temp: %2.1f  \r\nHumi: %2.0f%%  \r\nPressure:%2.0fhPa\r\n", temp, hum, pressure);
 
   //センサーデータのHarvestへの送信
-  postSensorData(tmp, hum, pressure);
+  postSensorData(temp, hum, pressure);
 
   delay(10000);
 
@@ -96,11 +96,11 @@ void loop() {
 
 
 
-void postSensorData(float tmp, float hum, float pressure) {
+void postSensorData(float temp, float hum, float pressure) {
 
   //Jsonドキュメント作成
   DynamicJsonDocument doc(2048);
-  doc["temperature"] = tmp;
+  doc["temperature"] = temp;
   doc["humidity"] = hum;
   doc["pressure"] = pressure;
 
