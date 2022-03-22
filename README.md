@@ -1,6 +1,6 @@
-# Sample code for M5Stack + Env III sensor to send data to SORACOM Harvest
+# Sample code for M5Stack + Env III sensor to send data to Soracom Harvest
 
-This sample shows how to send temperature, humidity and atmospheric pressure data captured using M5Stack and Env III sensor to SORACOM Harvest.
+This sample shows how to send temperature, humidity and atmospheric pressure data captured using M5Stack and Env III sensor to Soracom Harvest.
 
 - [ENV III Unit with Temperature Humidity Air Pressure Sensor (SHT30+QMP6988)](https://shop.m5stack.com/products/env-iii-unit-with-temperature-humidity-air-pressure-sensor-sht30-qmp6988)
 - [M5Stack Basic](https://m5stack.com/)
@@ -9,9 +9,9 @@ This sample shows how to send temperature, humidity and atmospheric pressure dat
 
 ## Prerequisites
 
-### Enable SORACOM Harvest
+### Enable Soracom Harvest
 
-Enable SORACOM Harvest feature by following [the steps described in the document](https://users.soracom.io/ja-jp/docs/harvest/send-data/).
+Enable Soracom Harvest feature by following [the steps described in the document](https://users.soracom.io/ja-jp/docs/harvest/send-data/).
 
 ### Setup Arduino IDE
 
