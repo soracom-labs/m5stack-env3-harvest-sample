@@ -1,4 +1,3 @@
-
 #include <M5Stack.h>
 
 //通信ライブラリ
