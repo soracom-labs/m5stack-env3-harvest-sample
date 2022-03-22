@@ -11,6 +11,10 @@
 TinyGsm modem(Serial2); /* 3Gボードモデム */
 TinyGsmClient ctx(modem);
 
+char serverAddress[] = "unified.soracom.io";
+int port = 80;
+HttpClient client = HttpClient(ctx, serverAddress, port);
+
 
 //センサーライブラリのインポート
 #include "UNIT_ENV.h"
@@ -22,10 +26,6 @@ float tmp = 0.0;
 float hum = 0.0;
 float pressure = 0.0;
 
-char serverAddress[] = "unified.soracom.io";
-int port = 80;
-HttpClient client = HttpClient(ctx, serverAddress, port);
-
 void setup() {
   //初期化
   M5.begin();
@@ -36,7 +36,7 @@ void setup() {
 
 
   //モデムの初期化（APNの設定）
-  M5.Lcd.print("Resterting Modem...");
+  M5.Lcd.print("Restarting Modem...");
   Serial2.begin(115200, SERIAL_8N1, 16, 17);
   modem.restart();
   M5.Lcd.println("Done.");
@@ -88,7 +88,7 @@ void loop() {
   M5.Lcd.printf("Temp: %2.1f  \r\nHumi: %2.0f%%  \r\nPressure:%2.0fhPa\r\n", tmp, hum, pressure);
 
   //センサーデータのHarvestへの送信
-  postCensorData(tmp, hum, pressure);
+  postSensorData(tmp, hum, pressure);
 
   delay(10000);
 
@@ -96,7 +96,7 @@ void loop() {
 
 
 
-void postCensorData(float tmp, float hum, float pressure) {
+void postSensorData(float tmp, float hum, float pressure) {
 
   //Jsonドキュメント作成
   DynamicJsonDocument doc(2048);
