@@ -1,23 +1,23 @@
-# M5Stack Env3 Harvest
+# Sample code for M5Stack + Env III sensor to send data to Soracom Harvest
 
-This sample shows how to send humidity and temperature, pressure from Env III to harvest.
+This sample shows how to send temperature, humidity and atmospheric pressure data captured using M5Stack and Env III sensor to Soracom Harvest.
 
 - [ENV III Unit with Temperature Humidity Air Pressure Sensor (SHT30+QMP6988)](https://shop.m5stack.com/products/env-iii-unit-with-temperature-humidity-air-pressure-sensor-sht30-qmp6988)
 - [M5Stack Basic](https://m5stack.com/)
 - [M5Stack 3G Module](https://soracom.jp/store/5231/)
-- Soracom SIM
+- SORACOM IoT SIM
 
-## Prerequisite
+## Prerequisites
 
 ### Enable Soracom Harvest
 
-Enable Soracom Harvest feature by following the [doument about the Harvest](https://users.soracom.io/ja-jp/docs/harvest/send-data/)
+Enable Soracom Harvest feature by following [the steps described in the document](https://users.soracom.io/ja-jp/docs/harvest/send-data/).
 
-### Setup ArduinoIDE
+### Setup Arduino IDE
 
-Setup Arduino to use M5Stack by following the document [setup-for-m5stack-with-arduino-ide](https://soracom.github.io/iot-recipes/setup-for-m5stack-with-arduino-ide). Please make sure your ArduinoIDE targets `M5Stack-Core-ESP32` as the board configuration.
+Setup Arduino IDE to use M5Stack by following the steps described in the document [setup-for-m5stack-with-arduino-ide](https://soracom.github.io/iot-recipes/setup-for-m5stack-with-arduino-ide). Please make sure your Arduino IDE targets `M5Stack-Core-ESP32` as the board configuration.
 
-### Install Dependencies
+### Install dependencies
 
 Install the following libraries to your Arduino IDE
 
@@ -29,4 +29,4 @@ Install the following libraries to your Arduino IDE
 
 ## Compile and Run
 
-With your Arduino IDE, compile [m5stack-env3-harvest-sample.ino](./m5stack-env3-harvest-sample.ino)
+With your Arduino IDE, compile and run [the sketch](./m5stack-env3-harvest-sample.ino)
