@@ -6,9 +6,6 @@
 #include <HTTPClient.h>
 #include <ArduinoHttpClient.h>
 
-//Jsonライブラリ
-#include <ArduinoJson.h>
-
 TinyGsm modem(Serial2); /* 3Gボードモデム */
 TinyGsmClient ctx(modem);
 
@@ -16,16 +13,14 @@ const char* serverAddress = "unified.soracom.io";
 const int port = 80;
 HttpClient client = HttpClient(ctx, serverAddress, port);
 
-
 //センサーライブラリ
 #include "UNIT_ENV.h"
 
 SHT3X sht30;
 QMP6988 qmp6988;
 
-float temp = 0.0;
-float hum = 0.0;
-float pressure = 0.0;
+//Jsonライブラリ
+#include <ArduinoJson.h>
 
 void setup() {
   //初期化
@@ -46,15 +41,15 @@ void setup() {
   String modemInfo = modem.getModemInfo();
   M5.Lcd.println(modemInfo);
 
-  M5.Lcd.print("Waiting to be connected..");
+  M5.Lcd.print("Waiting to be registered..");
   while (!modem.waitForNetwork()) M5.Lcd.print(".");
   M5.Lcd.println("done.");
 
-  M5.Lcd.print("GPRS Connecting to soracom.io..");
+  M5.Lcd.print("Creating PDP context with APN soracom.io..");
   modem.gprsConnect("soracom.io", "sora", "sora");
   M5.Lcd.println("done.");
 
-  M5.Lcd.print("Network Connecting..");
+  M5.Lcd.print("Connecting to the network..");
   while (!modem.isNetworkConnected()) M5.Lcd.print(".");
   M5.Lcd.println("done.");
 
@@ -68,42 +63,39 @@ void setup() {
   qmp6988.init();
 
   delay(2000);
-
 }
 
 void loop() {
+  float t = 0.0; // temperature
+  float h = 0.0; // humidity
+  float p = 0.0; // pressure
+
   //センサーデータの取得
-  pressure = qmp6988.calcPressure()/100;
-  if(sht30.get()==0){
-    temp = sht30.cTemp;
-    hum = sht30.humidity;
-  }else{
-    temp=0,hum=0;
+  p = qmp6988.calcPressure()/100;
+  if (sht30.get() == 0) {
+    t = sht30.cTemp;
+    h = sht30.humidity;
   }
 
   //ディスプレイのクリア（塗りつぶし）
-  M5.lcd.fillRect(0,0,320,240,BLACK);
+  M5.lcd.fillRect(0, 0, 320, 240, BLACK);
 
   //センサーデータの表示
-  M5.lcd.setCursor(0,20);
-  M5.Lcd.printf("Temp: %2.1f  \r\nHumi: %2.0f%%  \r\nPressure:%2.0fhPa\r\n", temp, hum, pressure);
+  M5.lcd.setCursor(0, 20);
+  M5.Lcd.printf("Temp: %2.1f  \r\nHumi: %2.0f%%  \r\nPressure:%2.0fhPa\r\n", t, h, p);
 
   //センサーデータのHarvestへの送信
-  postSensorData(temp, hum, pressure);
+  postSensorData(t, h, p);
 
   delay(10000);
-
 }
 
-
-
-void postSensorData(float temp, float hum, float pressure) {
-
+void postSensorData(float t, float h, float p) {
   //Jsonドキュメント作成
   DynamicJsonDocument doc(2048);
-  doc["temperature"] = temp;
-  doc["humidity"] = hum;
-  doc["pressure"] = pressure;
+  doc["temperature"] = t;
+  doc["humidity"] = h;
+  doc["pressure"] = p;
 
   //Jsonドキュメントのシリアライズ
   String json;
@@ -129,5 +121,4 @@ void postSensorData(float temp, float hum, float pressure) {
 
   M5.Lcd.print("Status code: ");
   M5.Lcd.println(statusCode);
-
 }
